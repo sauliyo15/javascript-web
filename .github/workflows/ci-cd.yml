@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+# Cuándo se debe ejecutar este flujo de trabajo
+on:
+  push:             # Ejecuta cuando se hace push a la rama principal
+    branches:
+      - main
+  pull_request:     # Ejecuta en cada pull request a la rama principal
+    branches:
+      - main
+
+# Jobs que se ejecutarán
+jobs:
+  build:
+    runs-on: ubuntu-latest   # Elige un runner de GitHub (máquina virtual)
+
+    steps:
+    # Comandos a ejecutar paso a paso
+    - name: Checkout code   # 1. Obtener el código del repositorio
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js   # 2. Configurar Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'   # Especifica la versión de Node.js que usas
+
+    - name: Install dependencies   # 3. Instalar las dependencias
+      run: npm install
+
+    - name: Run tests   # 4. Ejecutar pruebas automáticas
+      run: npm test
+
+    #- name: Build Docker image   # 5. (Opcional) Construir una imagen Docker
+    #  run: docker build -t javascript-web .
+
+    #- name: Push Docker image to DockerHub (opcional)   # 6. (Opcional) Publicar la imagen en DockerHub
+    #  env:
+    #    DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    #    DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    #  run: |
+    #    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    #    docker tag mi-proyecto-web $DOCKER_USERNAME/mi-proyecto-web
+    #    docker push $DOCKER_USERNAME/mi-proyecto-web
