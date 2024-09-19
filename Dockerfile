@@ -21,4 +21,5 @@ CMD ["node", "index.js"]
 
 
 # Comando para construir la imagen: docker build -t javascript-web .
-# Comando para ejecutar el contenedor mapeado: docker run -d -p 3000:3000 javascript-web
+# Comando para ejecutar el contenedor mapeado: docker run -d -p 3000:3000 javascript-web   // docker run -d --env-file .env -p 4000:4000 javascript-web
+
