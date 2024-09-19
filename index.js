@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 // Nueva ruta adicional
 app.get('/saludo', (req, res) => {
-  const nombre = req.query.nombre || 'amigo'; // Toma un parámetro de consulta
+  const nombre = process.env.ADMINISTRADOR || 'amigo'; // Toma un parámetro de consulta
   res.send(`¡Hola, ${nombre}!`);
 });
 
