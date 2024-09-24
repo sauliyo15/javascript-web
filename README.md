@@ -2,6 +2,7 @@
 
 Este proyecto es una API construida con **Node.js** y **Express**, que implementa un CRUD básico para gestionar usuarios. Además, cuenta con integración continua (CI/CD) utilizando **GitHub Actions** y contenedores Docker.
 
+
 # Características
 
     - Rutas de ejemplo (`/`, `/api`, `/saludo`).
@@ -9,6 +10,7 @@ Este proyecto es una API construida con **Node.js** y **Express**, que implement
     - Contenedor Docker para despliegue.
     - Tests automatizados con **Jest** y **Supertest**.
     - Pipeline de CI/CD con GitHub Actions.
+
 
 ## Requisitos previos
 
@@ -18,21 +20,22 @@ Asegúrate de tener instalados los siguientes componentes antes de empezar:
 - [Docker](https://www.docker.com/get-started)
 - [Git](https://git-scm.com/)
 
+
 ## Instalación y configuración
 
 Sigue estos pasos para configurar el proyecto localmente:
 
 1. Clona el repositorio:
-   ```bash
    git clone https://github.com/tu-usuario/tu-repositorio.git
    cd tu-repositorio
 
 2. Instala las dependencias del proyecto:
-    npm instal
+    npm install
 
 3. Configura el archivo .env en la raíz del proyecto. Crea un archivo .env y define las siguientes variables de entorno:
     PORT=4000
     ADMINISTRADOR=tu_nombre
+
 
 ## Uso
 
@@ -54,21 +57,38 @@ Sigue estos pasos para configurar el proyecto localmente:
         PUT /usuarios/:id: Actualiza un usuario por su ID. (Requiere un objeto JSON en el body con los campos opcionales nombre y/o email.)
         DELETE /usuarios/:id: Elimina un usuario por su ID.
 
+
 ## Testing
 
 El proyecto incluye pruebas automatizadas con Jest y Supertest. Para ejecutar las pruebas:
     npm test
 
-Pruebas cubiertas:
-    GET /: Verifica que la ruta raíz responde con "Hello, world!".
-    GET /api: Verifica que la ruta /api responde con el mensaje esperado.
-    GET /saludo: Verifica que la ruta /saludo saluda correctamente basado en la variable de entorno ADMINISTRADOR.
+1. Pruebas unitarias:
+    - Controlador de Usuarios:
+        obtenerUsuarios: Verifica que se devuelvan todos los usuarios.
+        obtenerUsuarioPorId: Verifica que se devuelva un usuario específico por su ID.
+        crearUsuario: Verifica que se cree un nuevo usuario cuando se envía un objeto JSON con nombre y email.
+        actualizarUsuario: Verifica que se actualice correctamente un usuario específico.
+        eliminarUsuario: Verifica que se elimine correctamente un usuario específico.
 
-    GET /usuarios: Verifica que la ruta /usuarios devuelve todos los usuarios.
-    GET /usuarios/:id: Verifica que la ruta /usuarios/:id devuelve un usuario específico por su ID.
-    POST /usuarios: Verifica que la ruta /usuarios crea un nuevo usuario cuando se envía un objeto JSON con nombre y email.
-    PUT /usuarios/:id: Verifica que la ruta /usuarios/:id actualiza un usuario específico cuando se envía un objeto JSON con los datos a actualizar.
-    DELETE /usuarios/id: Verifica que la ruta /usuarios/:id elimina un usuario específico por su ID.
+    - Controlador de Rutas Simples:
+        obtenerRaiz: Verifica que la ruta raíz (/) responda con "Hello, world!".
+        obtenerApi: Verifica que la ruta /api responda con un mensaje JSON de estado.
+        obtenerSaludo: Verifica que la ruta /saludo salude correctamente, basado en la variable de entorno ADMINISTRADOR.
+
+2. Pruebas de integración:
+    - Rutas Generales:
+        GET /: Verifica que la ruta raíz responde con "Hola Mundo".
+        GET /api: Verifica que la ruta /api responde con el mensaje esperado.
+        GET /saludo: Verifica que la ruta /saludo saluda correctamente basado en la variable de entorno ADMINISTRADOR.
+
+    - Rutas de Usuarios (CRUD):
+        GET /usuarios: Verifica que la ruta /usuarios devuelve todos los usuarios.
+        GET /usuarios/:id: Verifica que la ruta /usuarios/:id devuelve un usuario específico por su ID.
+        POST /usuarios: Verifica que la ruta /usuarios crea un nuevo usuario cuando se envía un objeto JSON con nombre y email.
+        PUT /usuarios/:id: Verifica que la ruta /usuarios/:id actualiza un usuario específico cuando se envía un objeto JSON con los datos a actualizar.
+        DELETE /usuarios/id: Verifica que la ruta /usuarios/:id elimina un usuario específico por su ID.
+
 
 # CI/CD
 
@@ -81,6 +101,7 @@ El pipeline:
 
 Puedes encontrar la configuración del pipeline en .github/workflows/ci-cd.yml.
 
+
 # Docker
 
 Puedes ejecutar este proyecto dentro de un contenedor Docker.
@@ -92,6 +113,7 @@ Puedes ejecutar este proyecto dentro de un contenedor Docker.
     docker run -p 4000:4000 --env-file .env nombre-de-tu-imagen
 
 (Esto levantará el servidor en el puerto 4000, mapeado en tu máquina local al mismo puerto.)
+
 
 # Contribuir
 
@@ -107,6 +129,7 @@ Si quieres contribuir al proyecto, sigue estos pasos:
         git push origin nueva-funcionalidad
     
     4. Crea un Pull Request y explica tus cambios.
+
 
 # Licencia
 
