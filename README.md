@@ -1,6 +1,14 @@
-# Nombre del Proyecto
+# API CRUD con Node.js, Express, Docker y CI/CD
 
-Descripción breve de tu proyecto. Esta es una API sencilla construida con Node.js, Express y Docker para proporcionar una base para el manejo de rutas con pruebas automatizadas y un pipeline CI/CD.
+Este proyecto es una API construida con **Node.js** y **Express**, que implementa un CRUD básico para gestionar usuarios. Además, cuenta con integración continua (CI/CD) utilizando **GitHub Actions** y contenedores Docker.
+
+# Características
+
+    - Rutas de ejemplo (`/`, `/api`, `/saludo`).
+    - Rutas CRUD para usuarios.
+    - Contenedor Docker para despliegue.
+    - Tests automatizados con **Jest** y **Supertest**.
+    - Pipeline de CI/CD con GitHub Actions.
 
 ## Requisitos previos
 
@@ -10,7 +18,7 @@ Asegúrate de tener instalados los siguientes componentes antes de empezar:
 - [Docker](https://www.docker.com/get-started)
 - [Git](https://git-scm.com/)
 
-## Instalación
+## Instalación y configuración
 
 Sigue estos pasos para configurar el proyecto localmente:
 
@@ -33,10 +41,18 @@ Sigue estos pasos para configurar el proyecto localmente:
 
 2. El servidor se ejecutará en http://localhost:4000
 
-3. Rutas disponibles:
-    GET /: Devuelve "Hello, world!".
-    GET /api: Devuelve { message: "API is running" }.
-    GET /saludo: Devuelve un saludo basado en la variable ADMINISTRADOR del archivo .env.
+3. Endpoints de la API:
+    - Rutas de ejemplo:
+        GET /: Devuelve "Hello, world!".
+        GET /api: Devuelve { message: "API is running" }.
+        GET /saludo: Devuelve un saludo basado en la variable ADMINISTRADOR del archivo .env.
+
+    - Rutas CRUD de usuarios:
+        GET /usuarios: Obtiene todos los usuarios.
+        GET /usuarios/:id: Obtiene un usuario por su ID.
+        POST /usuarios: Crea un nuevo usuario. (Requiere un objeto JSON en el body con los campos nombre y email.)
+        PUT /usuarios/:id: Actualiza un usuario por su ID. (Requiere un objeto JSON en el body con los campos opcionales nombre y/o email.)
+        DELETE /usuarios/:id: Elimina un usuario por su ID.
 
 ## Testing
 
@@ -47,6 +63,12 @@ Pruebas cubiertas:
     GET /: Verifica que la ruta raíz responde con "Hello, world!".
     GET /api: Verifica que la ruta /api responde con el mensaje esperado.
     GET /saludo: Verifica que la ruta /saludo saluda correctamente basado en la variable de entorno ADMINISTRADOR.
+
+    GET /usuarios: Verifica que la ruta /usuarios devuelve todos los usuarios.
+    GET /usuarios/:id: Verifica que la ruta /usuarios/:id devuelve un usuario específico por su ID.
+    POST /usuarios: Verifica que la ruta /usuarios crea un nuevo usuario cuando se envía un objeto JSON con nombre y email.
+    PUT /usuarios/:id: Verifica que la ruta /usuarios/:id actualiza un usuario específico cuando se envía un objeto JSON con los datos a actualizar.
+    DELETE /usuarios/id: Verifica que la ruta /usuarios/:id elimina un usuario específico por su ID.
 
 # CI/CD
 
