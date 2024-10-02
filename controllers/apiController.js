@@ -8,7 +8,7 @@ const obtenerApi = (req, res) => {
 
 const obtenerSaludo = (req, res) => {
   const nombre = process.env.ADMINISTRADOR || "amigo";
-  res.status(200).json("¡Hola, " + nombre + "!");
+  res.status(200).json({ message: `¡Hola, ${nombre}!` });
 };
 
 module.exports = {

@@ -1,14 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const {
-  obtenerRoot,
-  obtenerApi,
-  obtenerSaludo,
-} = require("../controllers/apiController");
+const apiController = require("../controllers/apiController");
 
 // Definimos las rutas de ejemplo
-router.get("/", obtenerRoot);
-router.get("/api", obtenerApi);
-router.get("/saludo", obtenerSaludo);
+router.get("/", apiController.obtenerRoot);
+router.get("/api", apiController.obtenerApi);
+router.get("/saludo", apiController.obtenerSaludo);
 
 module.exports = router;
