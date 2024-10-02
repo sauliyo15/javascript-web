@@ -5,7 +5,7 @@ const obtenerUsuarios = async (req, res) => {
   try {
     const usuarios = await usuariosModel.obtenerUsuarios();
     if (!usuarios || usuarios.length === 0) {
-      return res.status(404).json({ mensaje: "No se encuentraron usuarios" });
+      return res.status(404).json({ mensaje: "No se encontraron usuarios" });
     }
     res.status(200).json(usuarios);
   } catch (error) {
