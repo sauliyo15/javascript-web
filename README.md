@@ -5,11 +5,11 @@ Este proyecto es una API construida con **Node.js** y **Express**, que implement
 
 # Características
 
-    - Rutas de ejemplo (`/`, `/api`, `/saludo`).
-    - Rutas CRUD para usuarios.
-    - Contenedor Docker para despliegue.
-    - Tests automatizados con **Jest** y **Supertest**.
-    - Pipeline de CI/CD con GitHub Actions.
+- Rutas de ejemplo (`/`, `/api`, `/saludo`).
+- Rutas CRUD para usuarios.
+- Contenedor Docker para despliegue.
+- Tests automatizados con **Jest** y **Supertest**.
+- Pipeline de CI/CD con GitHub Actions.
 
 
 ## Requisitos previos
@@ -27,54 +27,60 @@ Asegúrate de tener instalados los siguientes componentes antes de empezar:
 Sigue estos pasos para configurar el proyecto localmente:
 
 1. Clona el repositorio:
-    - git clone https://github.com/sauliyo15/javascript-web.git
-    - cd javascript-web
+
+        git clone https://github.com/sauliyo15/javascript-web.git
+        cd javascript-web
 
 2. Instala las dependencias del proyecto:
-    - npm install
 
-3. Configura el archivo .env en la raíz del proyecto. Crea un archivo .env y define las siguientes variables de entorno:
-    - PORT=4000
-    - ADMINISTRADOR=tu_nombre
+        npm install
 
-4. Configuración de la base de datos:
-    Este proyecto está diseñado para interactuar con una base de datos MySQL para gestionar usuarios.
+3. Configura el archivo `.env` en la raíz del proyecto. Crea un archivo .env y define las siguientes variables de entorno:
 
-    - Requisitos de la Base de Datos:
-        MySQL: Asegúrate de tener una instancia de MySQL ejecutándose. Si no tienes MySQL instalado, puedes utilizar Docker para configurarlo rápidamente:
+        PORT=4000
+        ADMINISTRADOR=tu_nombre
+
+4. Configuración de la base de datos: este proyecto está diseñado para interactuar con una base de datos MySQL para gestionar usuarios.
+
+    - Requisitos de la Base de Datos: asegúrate de tener una instancia de MySQL ejecutándose. Si no tienes MySQL instalado, puedes utilizar Docker para configurarlo rápidamente:
+
             docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=mi_basedatos -p 3306:3306 -d mysql:latest
 
-    - Configuración en el archivo .env:
-        DB_HOST=localhost
-        DB_USER=root
-        DB_PASSWORD=admin
-        DB_NAME=mi_basedatos
+    - Configuración en el archivo `.env`:
 
-    - Estructura de la Base de Datos: La base de datos debe tener una tabla llamada usuarios con la siguiente estructura básica:
-        CREATE TABLE usuarios (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            nombre VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL
-        );
+            DB_HOST=localhost
+            DB_USER=root
+            DB_PASSWORD=admin
+            DB_NAME=mi_basedatos
+
+    - Estructura de la Base de Datos: la base de datos debe tener una tabla llamada usuarios con la siguiente estructura básica:
+
+            CREATE TABLE usuarios (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                nombre VARCHAR(255) NOT NULL,
+                email VARCHAR(255) NOT NULL
+            );
     
-    - Migraciones y Datos de Prueba: Puedes insertar datos de prueba de forma manual o ejecutar migraciones automáticas si has configurado algún sistema de migración. Aquí tienes un ejemplo para insertar un usuario manualmente:
-        INSERT INTO usuarios (nombre, email) VALUES ('John Doe', 'john@example.com');
+    - Migraciones y Datos de Prueba: puedes insertar datos de prueba de forma manual o ejecutar migraciones automáticas si has configurado algún sistema de migración. Aquí tienes un ejemplo para insertar un usuario manualmente:
 
-    - Conexión y Pruebas: La API se conectará a la base de datos MySQL y podrás utilizar los endpoints CRUD para gestionar usuarios almacenados en dicha base de datos. No olvides que para las pruebas unitarias no es necesaria la base de datos real, ya que se usan mocks.
+            INSERT INTO usuarios (nombre, email) VALUES ('John Doe', 'john@example.com');
+
+    - Conexión y Pruebas: la API se conectará a la base de datos MySQL y podrás utilizar los endpoints CRUD para gestionar usuarios almacenados en dicha base de datos. No olvides que para las pruebas unitarias no es necesaria la base de datos real, ya que se usan mocks.
 
 
 ## Uso
 
 1. Ejecuta el servidor:
-    npm start
 
-2. El servidor se ejecutará en http://localhost:4000
+        npm start
+
+2. El servidor se ejecutará en `http://localhost:4000`
 
 3. Endpoints de la API:
     - Rutas de ejemplo:
-        GET /: Devuelve "Hola Mundo".
-        GET /api: Devuelve { message: "API funcionando OK" }.
-        GET /saludo: Devuelve un saludo basado en la variable ADMINISTRADOR del archivo .env.
+        - `GET /: Devuelve "Hola Mundo"`
+        - `GET /api: Devuelve { message: "API funcionando OK" }`
+        - `GET /saludo: Devuelve un saludo basado en la variable ADMINISTRADOR del archivo .env`
 
     - Rutas CRUD de usuarios:
         GET /usuarios: Obtiene todos los usuarios.
@@ -110,21 +116,24 @@ El proyecto incluye pruebas automatizadas con Jest y Supertest. Para ejecutar la
 Este proyecto utiliza GitHub Actions para ejecutar un pipeline de CI/CD que se activa con cada push o pull request a la rama main.
 
 El pipeline:
+
     1. Instala las dependencias.
     2. Ejecuta las pruebas automatizadas.
     3. (Opcional) Puede ser configurado para construir y desplegar la imagen Docker en DockerHub.
 
-Puedes encontrar la configuración del pipeline en .github/workflows/ci-cd.yml.
+Puedes encontrar la configuración del pipeline en [.github/workflows/ci-cd.yml] (https://github.com/sauliyo15/javascript-web/blob/main/.github/workflows/ci-cd.yml)
 
 
 # Docker
 
 Puedes ejecutar este proyecto dentro de un contenedor Docker.
 
-    1. Construir la imagen:
+1. Construir la imagen:
+            
         docker build -t nombre-de-tu-imagen .
 
-    2. Ejecutar el contenedor:
+2. Ejecutar el contenedor:
+
         docker run -p 4000:4000 --env-file .env nombre-de-tu-imagen
 
 (Esto levantará el servidor en el puerto 4000, mapeado en tu máquina local al mismo puerto.)
