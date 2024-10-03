@@ -27,15 +27,15 @@ Asegúrate de tener instalados los siguientes componentes antes de empezar:
 Sigue estos pasos para configurar el proyecto localmente:
 
 1. Clona el repositorio:
-   git clone https://github.com/sauliyo15/javascript-web.git
-   cd javascript-web
+    - git clone https://github.com/sauliyo15/javascript-web.git
+    - cd javascript-web
 
 2. Instala las dependencias del proyecto:
-    npm install
+    - npm install
 
 3. Configura el archivo .env en la raíz del proyecto. Crea un archivo .env y define las siguientes variables de entorno:
-    PORT=4000
-    ADMINISTRADOR=tu_nombre
+    - PORT=4000
+    - ADMINISTRADOR=tu_nombre
 
 4. Configuración de la base de datos:
     Este proyecto está diseñado para interactuar con una base de datos MySQL para gestionar usuarios.
@@ -121,11 +121,11 @@ Puedes encontrar la configuración del pipeline en .github/workflows/ci-cd.yml.
 
 Puedes ejecutar este proyecto dentro de un contenedor Docker.
 
-1. Construir la imagen:
-    docker build -t nombre-de-tu-imagen .
+    1. Construir la imagen:
+        docker build -t nombre-de-tu-imagen .
 
-2. Ejecutar el contenedor:
-    docker run -p 4000:4000 --env-file .env nombre-de-tu-imagen
+    2. Ejecutar el contenedor:
+        docker run -p 4000:4000 --env-file .env nombre-de-tu-imagen
 
 (Esto levantará el servidor en el puerto 4000, mapeado en tu máquina local al mismo puerto.)
 
