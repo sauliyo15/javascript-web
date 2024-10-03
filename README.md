@@ -40,7 +40,7 @@ Sigue estos pasos para configurar el proyecto localmente:
         PORT=4000
         ADMINISTRADOR=tu_nombre
 
-4. Configuración de la base de datos: este proyecto está diseñado para interactuar con una base de datos MySQL para gestionar usuarios.
+4. Configuración de la base de datos: este proyecto está diseñado para interactuar con una base de datos **MySQL** para gestionar usuarios.
 
     - Requisitos de la Base de Datos: asegúrate de tener una instancia de MySQL ejecutándose. Si no tienes MySQL instalado, puedes utilizar Docker para configurarlo rápidamente:
 
@@ -83,32 +83,33 @@ Sigue estos pasos para configurar el proyecto localmente:
         - `GET /saludo: Devuelve un saludo basado en la variable ADMINISTRADOR del archivo .env`
 
     - Rutas CRUD de usuarios:
-        GET /usuarios: Obtiene todos los usuarios.
-        GET /usuarios/:id: Obtiene un usuario por su ID.
-        POST /usuarios: Crea un nuevo usuario. (Requiere un objeto JSON en el body con los campos nombre y email.)
-        PUT /usuarios/:id: Actualiza un usuario por su ID. (Requiere un objeto JSON en el body con los campos opcionales nombre y/o email.)
-        DELETE /usuarios/:id: Elimina un usuario por su ID.
+        - `GET /usuarios: Obtiene todos los usuarios`
+        - `GET /usuarios/:id: Obtiene un usuario por su ID`
+        - `POST /usuarios: Crea un nuevo usuario. (Requiere un objeto JSON en el body con los campos nombre y email.)`
+        - `PUT /usuarios/:id: Actualiza un usuario por su ID. (Requiere un objeto JSON en el body con los campos opcionales nombre y/o email.)`
+        - `DELETE /usuarios/:id: Elimina un usuario por su ID.`
 
 
 ## Testing
 
-El proyecto incluye pruebas automatizadas con Jest y Supertest. Para ejecutar las pruebas:
+El proyecto incluye pruebas automatizadas con **Jest** y **Supertest**. Para ejecutar las pruebas:
+
     npm test
 
-1. Pruebas unitarias:
-    - Controlador de Usuarios:
-        obtenerUsuarios: Verifica que se devuelvan todos los usuarios.
-        obtenerUsuarioPorId: Verifica que se devuelva un usuario específico por su ID.
-        crearUsuario: Verifica que se cree un nuevo usuario cuando se envía un objeto JSON con nombre y email.
-        actualizarUsuario: Verifica que se actualice correctamente un usuario específico.
-        eliminarUsuario: Verifica que se elimine correctamente un usuario específico.
+Pruebas unitarias:
+- Controlador de Usuarios:
+    - `obtenerUsuarios: Verifica que se devuelvan todos los usuarios.`
+    - `obtenerUsuarioPorId: Verifica que se devuelva un usuario específico por su ID.`
+    - `crearUsuario: Verifica que se cree un nuevo usuario cuando se envía un objeto JSON con nombre y email.`
+    - `actualizarUsuario: Verifica que se actualice correctamente un usuario específico.`
+    - `eliminarUsuario: Verifica que se elimine correctamente un usuario específico.`
 
-    - Controlador de Rutas Simples:
-        obtenerRaiz: Verifica que la ruta raíz (/) responda con "Hola Mundo".
-        obtenerApi: Verifica que la ruta /api responda con un mensaje JSON de estado.
-        obtenerSaludo: Verifica que la ruta /saludo salude correctamente, basado en la variable de entorno ADMINISTRADOR.
+- Controlador de Rutas Simples:
+    - `obtenerRaiz: Verifica que la ruta raíz (/) responda con "Hola Mundo".`
+    - `obtenerApi: Verifica que la ruta /api responda con un mensaje JSON de estado.`
+    - `obtenerSaludo: Verifica que la ruta /saludo salude correctamente, basado en la variable de entorno ADMINISTRADOR.`
 
-    (Nota: Las pruebas de integración, que interactuaban directamente con la base de datos, han sido eliminadas para evitar alteraciones en un entorno real. Solo se mantienen las pruebas unitarias.)
+    (Nota: Las pruebas de integración, que interactuaban directamente con la base de datos, han sido eliminadas para evitar alteraciones en un entorno real. Solo se mantienen las pruebas unitarias con datos de prueba, mocks.)
 
 
 # CI/CD
@@ -117,11 +118,12 @@ Este proyecto utiliza GitHub Actions para ejecutar un pipeline de CI/CD que se a
 
 El pipeline:
 
-    1. Instala las dependencias.
-    2. Ejecuta las pruebas automatizadas.
-    3. (Opcional) Puede ser configurado para construir y desplegar la imagen Docker en DockerHub.
+1. Instala las dependencias.
+2. Ejecuta las pruebas automatizadas.
+3. (Opcional) Puede ser configurado para construir y desplegar la imagen Docker en DockerHub.
 
-Puedes encontrar la configuración del pipeline en [.github/workflows/ci-cd.yml] (https://github.com/sauliyo15/javascript-web/blob/main/.github/workflows/ci-cd.yml)
+Puedes encontrar la configuración del pipeline en el archivo [/github/workflows/ci-cd.yml](https://github.com/sauliyo15/javascript-web/blob/main/.github/workflows/ci-cd.yml)
+
 
 
 # Docker
@@ -143,23 +145,26 @@ Puedes ejecutar este proyecto dentro de un contenedor Docker.
 
 Si quieres contribuir al proyecto, sigue estos pasos:
 
-    1. Crea un nuevo branch para tu funcionalidad:
+1. Crea un nuevo branch para tu funcionalidad:
+
         git checkout -b nueva-funcionalidad
     
-    2. Realiza tus cambios y haz commit:
+2. Realiza tus cambios y haz commit:
+
         git commit -m "Descripción de los cambios"
     
-    3. Envía los cambios a tu repositorio remoto:
+3. Envía los cambios a tu repositorio remoto:
+        
         git push origin nueva-funcionalidad
     
-    4. Crea un Pull Request y explica tus cambios.
+4. Crea un Pull Request y explica tus cambios.
 
 
 # Licencia
 
-MIT License
+**MIT License**
 
-Copyright (c) [2024] [Saúl García Calvo]
+**Copyright (c) [2024] [Saúl García Calvo]**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
