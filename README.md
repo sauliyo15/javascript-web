@@ -1,6 +1,6 @@
 # API CRUD con Node.js, Express, Docker y CI/CD
 
-Este proyecto es una API construida con **Node.js** y **Express**, que implementa un CRUD básico para gestionar usuarios. Además, cuenta con integración continua (CI/CD) utilizando **GitHub Actions** y contenedores Docker.
+Este proyecto es una API construida con **Node.js** y **Express**, que implementa un CRUD básico para gestionar usuarios. Además, cuenta con integración continua (CI/CD) utilizando **GitHub Actions** y contenedores **Docker**.
 
 
 # Características
@@ -15,10 +15,11 @@ Este proyecto es una API construida con **Node.js** y **Express**, que implement
 ## Requisitos previos
 
 Asegúrate de tener instalados los siguientes componentes antes de empezar:
-- [Node.js](https://nodejs.org/) (versión 14 o superior)
-- [npm](https://www.npmjs.com/) (versión 6 o superior)
+- [Node.js](https://nodejs.org/) (versión 20 o superior)
+- [npm](https://www.npmjs.com/) (versión 10 o superior)
 - [Docker](https://www.docker.com/get-started)
 - [Git](https://git-scm.com/)
+- [MySQL](https://www.mysql.com/)
 
 
 ## Instalación y configuración
@@ -26,8 +27,8 @@ Asegúrate de tener instalados los siguientes componentes antes de empezar:
 Sigue estos pasos para configurar el proyecto localmente:
 
 1. Clona el repositorio:
-   git clone https://github.com/tu-usuario/tu-repositorio.git
-   cd tu-repositorio
+   git clone https://github.com/sauliyo15/javascript-web.git
+   cd javascript-web
 
 2. Instala las dependencias del proyecto:
     npm install
@@ -35,6 +36,31 @@ Sigue estos pasos para configurar el proyecto localmente:
 3. Configura el archivo .env en la raíz del proyecto. Crea un archivo .env y define las siguientes variables de entorno:
     PORT=4000
     ADMINISTRADOR=tu_nombre
+
+4. Configuración de la base de datos:
+    Este proyecto está diseñado para interactuar con una base de datos MySQL para gestionar usuarios.
+
+    - Requisitos de la Base de Datos:
+        MySQL: Asegúrate de tener una instancia de MySQL ejecutándose. Si no tienes MySQL instalado, puedes utilizar Docker para configurarlo rápidamente:
+            docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=admin -e MYSQL_DATABASE=mi_basedatos -p 3306:3306 -d mysql:latest
+
+    - Configuración en el archivo .env:
+        DB_HOST=localhost
+        DB_USER=root
+        DB_PASSWORD=admin
+        DB_NAME=mi_basedatos
+
+    - Estructura de la Base de Datos: La base de datos debe tener una tabla llamada usuarios con la siguiente estructura básica:
+        CREATE TABLE usuarios (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            nombre VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL
+        );
+    
+    - Migraciones y Datos de Prueba: Puedes insertar datos de prueba de forma manual o ejecutar migraciones automáticas si has configurado algún sistema de migración. Aquí tienes un ejemplo para insertar un usuario manualmente:
+        INSERT INTO usuarios (nombre, email) VALUES ('John Doe', 'john@example.com');
+
+    - Conexión y Pruebas: La API se conectará a la base de datos MySQL y podrás utilizar los endpoints CRUD para gestionar usuarios almacenados en dicha base de datos. No olvides que para las pruebas unitarias no es necesaria la base de datos real, ya que se usan mocks.
 
 
 ## Uso
@@ -46,8 +72,8 @@ Sigue estos pasos para configurar el proyecto localmente:
 
 3. Endpoints de la API:
     - Rutas de ejemplo:
-        GET /: Devuelve "Hello, world!".
-        GET /api: Devuelve { message: "API is running" }.
+        GET /: Devuelve "Hola Mundo".
+        GET /api: Devuelve { message: "API funcionando OK" }.
         GET /saludo: Devuelve un saludo basado en la variable ADMINISTRADOR del archivo .env.
 
     - Rutas CRUD de usuarios:
@@ -72,22 +98,11 @@ El proyecto incluye pruebas automatizadas con Jest y Supertest. Para ejecutar la
         eliminarUsuario: Verifica que se elimine correctamente un usuario específico.
 
     - Controlador de Rutas Simples:
-        obtenerRaiz: Verifica que la ruta raíz (/) responda con "Hello, world!".
+        obtenerRaiz: Verifica que la ruta raíz (/) responda con "Hola Mundo".
         obtenerApi: Verifica que la ruta /api responda con un mensaje JSON de estado.
         obtenerSaludo: Verifica que la ruta /saludo salude correctamente, basado en la variable de entorno ADMINISTRADOR.
 
-2. Pruebas de integración:
-    - Rutas Generales:
-        GET /: Verifica que la ruta raíz responde con "Hola Mundo".
-        GET /api: Verifica que la ruta /api responde con el mensaje esperado.
-        GET /saludo: Verifica que la ruta /saludo saluda correctamente basado en la variable de entorno ADMINISTRADOR.
-
-    - Rutas de Usuarios (CRUD):
-        GET /usuarios: Verifica que la ruta /usuarios devuelve todos los usuarios.
-        GET /usuarios/:id: Verifica que la ruta /usuarios/:id devuelve un usuario específico por su ID.
-        POST /usuarios: Verifica que la ruta /usuarios crea un nuevo usuario cuando se envía un objeto JSON con nombre y email.
-        PUT /usuarios/:id: Verifica que la ruta /usuarios/:id actualiza un usuario específico cuando se envía un objeto JSON con los datos a actualizar.
-        DELETE /usuarios/id: Verifica que la ruta /usuarios/:id elimina un usuario específico por su ID.
+    (Nota: Las pruebas de integración, que interactuaban directamente con la base de datos, han sido eliminadas para evitar alteraciones en un entorno real. Solo se mantienen las pruebas unitarias.)
 
 
 # CI/CD
