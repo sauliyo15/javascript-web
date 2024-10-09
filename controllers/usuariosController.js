@@ -9,7 +9,7 @@ const obtenerUsuarios = async (req, res) => {
     }
     res.status(200).json(usuarios);
   } catch (error) {
-    console.error("Error al obtener usuarios:", error);
+    //console.error("Error al obtener usuarios:", error);
     res.status(500).json({ error: "Error al obtener usuarios" });
   }
 };
@@ -26,7 +26,7 @@ const obtenerUsuarioPorId = async (req, res) => {
     }
     res.status(200).json(usuario);
   } catch (error) {
-    console.error(`Error al obtener usuario con ID ${id}:`, error);
+    //console.error(`Error al obtener usuario con ID ${id}:`, error);
     res.status(500).json({ mensaje: `Error al obtener usuario con ID ${id}` });
   }
 };
@@ -42,7 +42,7 @@ const crearUsuario = async (req, res) => {
     const usuarioCreado = await usuariosModel.crearUsuario(nuevoUsuario);
     res.status(201).json(usuarioCreado);
   } catch (error) {
-    console.error("Error al crear usuario:", error);
+    //console.error("Error al crear usuario:", error);
     res.status(500).json({ error: "Error al crear usuario" });
   }
 };
@@ -61,12 +61,12 @@ const actualizarUsuario = async (req, res) => {
       usuarioActualizado
     );
 
-    if (resultado.affectedRows === 0) {
+    if (resultado === 0) { //if (resultado.affectedRows === 0) { --- CUANDO NO HABIA ORM
       return res.status(404).json({ error: "Usuario no encontrado"});
     }
     return res.status(200).json({ id, ...usuarioActualizado});
   } catch (error) {
-    console.error(`Error al actualizar usuario con ID ${id}:`, error);
+    //console.error(`Error al actualizar usuario con ID ${id}:`, error);
     res.status(500).json({ error: `Error al actualizar usuario con ID ${id}` });
   }
 };
@@ -77,12 +77,12 @@ const eliminarUsuario = async (req, res) => {
   try {
     const resultado = await usuariosModel.eliminarUsuario(id);
 
-    if (resultado.affectedRows === 0) {
+    if (resultado === 0) { //if (resultado.affectedRows === 0) { --- CUANDO NO HABIA ORM
       return res.status(404).json({ error: "Usuario no encontrado"});
     }
     return res.status(200).json({ message: "Usuario eliminado con éxito" });
   } catch (error) {
-    console.error(`Error al eliminar usuario con ID ${id}:`, error);
+    //console.error(`Error al eliminar usuario con ID ${id}:`, error);
     res.status(500).json({ error: `Error al eliminar usuario con ID ${id}` });
   }
 };

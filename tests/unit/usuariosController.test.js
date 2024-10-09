@@ -2,19 +2,10 @@ const request = require("supertest");
 const app = require("../../app");
 const usuariosModel = require("../../models/usuariosModel");
 
-jest.mock("../../models/usuariosModel");
+jest.mock("../../models/usuariosModel"); 
 
 describe("Usuarios Controller", () => {
-  beforeAll(() => {
-    // Interceptar console.error
-    jest.spyOn(console, "error").mockImplementation(() => {});
-  });
-
-  afterAll(() => {
-    // Restaurar console.error después de todos los tests
-    console.error.mockRestore();
-  });
-
+  
   describe("GET /usuarios", () => {
     it("debería devolver todos los usuarios", async () => {
       const usuariosMock = [
@@ -40,7 +31,7 @@ describe("Usuarios Controller", () => {
 
     it("debería devolver 500 en caso de error de base de datos", async () => {
       usuariosModel.obtenerUsuarios.mockRejectedValue(
-        new Error("Error de base de datos")
+        new Error("Error al obtener usuarios")
       );
 
       const res = await request(app).get("/usuarios");
@@ -124,7 +115,7 @@ describe("Usuarios Controller", () => {
         nombre: "Saul Actualizado",
         email: "saul_actualizado@example.com",
       };
-      usuariosModel.actualizarUsuario.mockResolvedValue({ affectedRows: 1 });
+      usuariosModel.actualizarUsuario.mockResolvedValue(1); // Simula que 1 fila fue actualizada
 
       const res = await request(app)
         .put("/usuarios/1")
@@ -139,7 +130,7 @@ describe("Usuarios Controller", () => {
         nombre: "Saul Actualizado",
         email: "saul_actualizado@example.com",
       };
-      usuariosModel.actualizarUsuario.mockResolvedValue({ affectedRows: 0 });
+      usuariosModel.actualizarUsuario.mockResolvedValue(0); // Simula que no se encontró el usuario
 
       const res = await request(app)
         .put("/usuarios/1")
@@ -182,7 +173,7 @@ describe("Usuarios Controller", () => {
 
   describe("DELETE /usuarios/:id", () => {
     it("debería eliminar un usuario", async () => {
-      usuariosModel.eliminarUsuario.mockResolvedValue({ affectedRows: 1 });
+      usuariosModel.eliminarUsuario.mockResolvedValue(1); // Simula que 1 fila fue eliminada
 
       const res = await request(app).delete("/usuarios/1");
 
@@ -191,7 +182,7 @@ describe("Usuarios Controller", () => {
     });
 
     it("debería devolver 404 si el usuario no se encuentra", async () => {
-      usuariosModel.eliminarUsuario.mockResolvedValue({ affectedRows: 0 });
+      usuariosModel.eliminarUsuario.mockResolvedValue(0); // Simula que no se encontró el usuario
 
       const res = await request(app).delete("/usuarios/1");
 
