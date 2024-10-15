@@ -160,6 +160,19 @@ Si quieres contribuir al proyecto, sigue estos pasos:
 4. Crea un Pull Request y explica tus cambios.
 
 
+# Documentación de la API
+
+La API está documentada utilizando **Swagger** y **OpenAPI**. Swagger proporciona una interfaz interactiva que permite a los desarrolladores explorar y probar los endpoints de la API de manera fácil y rápida.
+
+La documentación de Swagger está disponible en la siguiente URL: `http://localhost:4000/api-docs
+
+## Características de la Documentación
+
+- **Visualización Interactiva**: puedes ver todos los endpoints disponibles y probarlos directamente desde la interfaz.
+- **Ejemplos de Solicitud y Respuesta**: cada endpoint incluye ejemplos de datos para ayudar a entender cómo interactuar con la API.
+- **Descripción Detallada**: la documentación incluye descripciones completas de cada endpoint, parámetros, respuestas y errores posibles.`
+
+
 # Licencia
 
 **MIT License**
